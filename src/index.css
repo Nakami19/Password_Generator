@@ -6,3 +6,45 @@
   margin: 0;
   padding: 0;
 }
+
+@layer components {
+  .custom-range {
+    @apply appearance-none h-[7px] rounded-lg bg-gray-400 bg-no-repeat;
+
+    /* Inicialmente el gradiente es aplicado pero su tamaño es ajustado dinámicamente */
+    background-image: linear-gradient(to right, #467599, #467599);
+
+    &::-webkit-slider-thumb {
+      @apply appearance-none h-[20px] w-[20px] rounded-full bg-white cursor-pointer shadow-md;
+      border: 2px solid #467599;
+    }
+
+    &::-webkit-slider-runnable-track {
+      @apply bg-transparent;
+      -webkit-appearance: none;
+      border: none;
+      box-shadow: none;
+    }
+  };
+
+  .custom-checkbox {
+    @apply appearance-none h-5 w-5 border border-gray-400 rounded cursor-pointer;
+
+    /* Fondo blanco y borde azul cuando está marcada */
+    &:checked {
+      @apply bg-white border-blue-500;
+    }
+
+    /* Estilo del check dentro de la checkbox cuando está marcada */
+    &:checked::before {
+      content: '✓';
+      display: block;
+      text-align: center;
+      color: rgb(85, 85, 220);
+      font-weight: bold;
+      font-size: 18px;
+      line-height: 1;
+    }
+  }
+
+}

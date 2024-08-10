@@ -41,17 +41,19 @@ function ProgressBar() {
         }
     }
     return (
-    <div id="container" className='flex flex-row space-x-16 w-3/4 justify-center'>
+    <div id="container" className='flex flex-row space-x-16 w-3/4 justify-center h-20'>
         <div id="progress-bar" className="w-96 h-4 border rounded-md bg-gray-300">
             <div id="progress-bar-fill" className={`h-full border rounded-md transition ease-out ${color} ${barwidth}`}>
 
             </div>
-            <h1 className="pl-6">{progress}</h1>
+            <div className={`${color} bg-opacity-50 w-24 flex justify-center mt-1 border rounded-md`}>
+              <h1 className={''}>{progress}</h1>  
+            </div>
+            
             <button onClick={subir}>
                 Progreso
             </button>
         </div>
-
         <div className="pl-6"></div>
 
     </div>

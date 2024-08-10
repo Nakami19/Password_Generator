@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import ProgressBar from './ProgressBar';
+import ProgressBar from './components/ProgressBar';
+import Slider from './components/Slider';
 
 
 function Home() {
@@ -8,8 +9,7 @@ function Home() {
     const [copy, setCopy] = useState("Copy")
     const [showCopytip, setShowCopytip] = useState(false);
     const [showGeneratetip, setShowGeneratetip] = useState(false);
-
-
+    const [options, setOptions] = useState(['ABC','abc','123','$?#'])
 
     const onCopy = async () => {
         try {
@@ -17,7 +17,7 @@ function Home() {
             setCopy("Copied")
             const timer = setTimeout(() => {
                 setCopy("Copy");
-              }, 2000);
+              }, 1000);
             return () => clearTimeout(timer);
         } catch (error) {
             console.error(error.message)
@@ -26,7 +26,7 @@ function Home() {
 
     return (
         <>
-        <div className='h-screen w-screen bg-seashell flex flex-col items-center justify-center'>
+        <div className='h-screen bg-seashell flex flex-col items-center justify-center'>
         <h1 className="text-center text-3xl my-2 font-sans font-medium ">Random Password Generator</h1>
         {/* Contenedor donde se muestra la clave y el boton de generar nueva clase */}
         <div className='flex flex-row space-x-7 mt-10'>
@@ -65,10 +65,40 @@ function Home() {
                 </button>
             </div>
         </div>
-
         {/* Barra de progreso */}
         <ProgressBar/>
+
+        {/* div que tiene la imagen y la config */}
+        <div className='flex flex-row w-fit space-x-24'>
+            <img src='https://i.pinimg.com/564x/1b/42/da/1b42da1af2e7c610be3d0a3abfccd2de.jpg' className='w-48 h-44 justify-start border rounded-md'></img>
+            <div id='config-container' className='flex flex-col space-y-4'>
+                <div className='flex flex-row space-x-4'>
+                    <h1 className='font-sans text-lg'>Password length</h1>
+                    <div className='bg-white w-9 flex justify-center border  border-slate-500 shadow-xl'>
+                        <h1>5</h1>
+                    </div>
+                </div>
+
+                    <Slider/>
+                
+                <div id='checkboxs' className='flex flex-row space-x-6 ml-5'>
+                {options.map((item,index) => 
+                <div key={index}>
+                    <label className='flex items-center font-sans text-lg'>
+                        <input type="checkbox" className='mr-1.5 h-5 w-5 bg-white custom-checkbox'/>
+                        {item}
+                    </label>
+
+                </div>
+                ) 
+                }
+                </div>
+
+            </div>
         </div>
+
+        </div>
+
 
         <footer className='bg-tiffany-blue'>
             <h1>Hola</h1>
