@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 
 
-function ProgressBar() {
+function ProgressBar({value}) {
     const [progress, setProgress]=useState("Very Weak")
     const [color, setColor]=useState('bg-green-300')
     const [barwidth, setWidth]=useState('w-1/4')
@@ -26,22 +26,23 @@ function ProgressBar() {
         }
     }, [progress]);
 
-    const subir = ()=>{
-        if(progress==='Very Weak'){
+    useEffect (()=>{
+        if(value>4 && value<=7){
             setProgress('Weak')
         }
-        else if(progress==='Weak'){
+        else if(value>7 && value<=11){
             setProgress('Good')
         }
-        else if(progress==='Good'){
+        else if(value>11){
             setProgress('Strong')
         }
         else {
             setProgress('Very Weak')
         }
-    }
+    },[value])
+
     return (
-    <div id="container" className='flex flex-row space-x-16 w-3/4 justify-center h-20'>
+    <div id="container" className='flex flex-row space-x-16 w-80 ml-6 md:ml-0 lg:ml-0 md:w-3/4 lg:w-3/4 justify-center h-20'>
         <div id="progress-bar" className="w-96 h-4 border rounded-md bg-gray-300">
             <div id="progress-bar-fill" className={`h-full border rounded-md transition ease-out ${color} ${barwidth}`}>
 
@@ -49,12 +50,9 @@ function ProgressBar() {
             <div className={`${color} bg-opacity-50 w-24 flex justify-center mt-1 border rounded-md`}>
               <h1 className={''}>{progress}</h1>  
             </div>
-            
-            <button onClick={subir}>
-                Progreso
-            </button>
+ 
         </div>
-        <div className="pl-6"></div>
+        <div className="pl-3"></div>
 
     </div>
 
@@ -62,5 +60,3 @@ function ProgressBar() {
 }
 
 export default ProgressBar
-
-// justify-start justify-items-start	justify-self-start	content-start	items-start	 self-start	 place-content-start	place-items-start	place-self-start	
